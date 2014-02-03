@@ -1,0 +1,29 @@
+{
+  "name": "rio",
+  "version": "0.1.0",
+  "description": "Retail Insight Orchestrator",
+  "main": "server.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinnylinck/rio"
+  },
+  "keywords": [
+    "NodeJS",
+    "Retail",
+    "ExpressJS",
+    "MongoDB"
+  ],
+  "author": "Vinicius Linck <vinnylinck@gmail.com>",
+  "license": "GPL",
+  "bugs": {
+    "url": "https://github.com/vinnylinck/rio/issues"
+  },
+  "homepage": "https://github.com/vinnylinck/rio",
+  "dependencies": {
+    "express": "~3.4.8",
+    "lodash": "~2.4.1"
+  }
+}
