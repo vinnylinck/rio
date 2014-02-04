@@ -9,7 +9,8 @@ exports.buildQuickResponse = function buildQResp(err, msg) {
     
     if (!isFine) {
         result.error = {
-            code: err.toString()
+            code: err.code,
+            details: err.toString()
         };
         
         if (fHelper.checkStringLen(msg)) {
