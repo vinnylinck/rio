@@ -1,10 +1,11 @@
 /* jslint node: true */
 'use strict';
 
-exports.signin = function usersSignin(req, res, next) {
-    res.json({ operation: 'signin' });
+exports.me = function usersMe(req, res) {
+    res.json(req.user || {});
 };
 
-exports.signout = function usersSignOut(req, res, next) {
-    res.json({ operation: 'signout' });
+exports.create = function usersCreate(req, res) {
+    console.log(req.body);
+    res.redirect('/users/me');
 };

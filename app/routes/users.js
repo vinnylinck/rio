@@ -4,6 +4,6 @@
 module.exports = function usersRoutes(app) {
     var users = require('../controllers/users');
     
-    app.get('/users/signin', users.signin);
-    app.get('/users/signout', users.signout);
+    app.get('/users/me', users.me);
+    app.post('/users', users.create);
 };

@@ -4,7 +4,8 @@
 /** 
  *  Module Dependencies
  */
-var express = require('express');
+var express  = require('express'),
+    mongoose = require('mongoose');
 
 /**
  *  Main application entry file.
