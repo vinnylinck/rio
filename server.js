@@ -19,11 +19,18 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var lHelper = require('./utils/loadHelper.js'),
     config = require('./config/index.js');
 
+// Configuring db connection
+var db = mongoose.connect(config.db);
+
+// Bootstrap models
+lHelper.walk(__dirname + '/app/models');
+
+
 // Configuring Express
 var app = express();
 require('./config/express')(app);
 
-// Bootstraping routes
+// Bootstrap routes
 lHelper.walk(__dirname + '/app/routes', [app]);
 
 // Start the app by listening on <port>
