@@ -3,9 +3,9 @@
 
 var fHelper = require('./formatHelper');
 
-exports.buildQuickResponse = function buildQResp(err, msg) {
+exports.buildQuickResponse = function buildQResp(err, msg, data) {
     var isFine = fHelper.isNullOrUndefined(err),
-        result = { ok: isFine };
+        result = { ok: isFine, result: data };
     
     if (!isFine) {
         result.error = {

@@ -5,7 +5,8 @@
  *  Module Dependencies
  */
 var express  = require('express'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    passport = require('passport');
 
 /**
  *  Main application entry file.
@@ -25,13 +26,15 @@ var db = mongoose.connect(config.db);
 // Bootstrap models
 lHelper.walk(__dirname + '/app/models');
 
+// Configuring passport
+require('./config/passport')(passport);
 
 // Configuring Express
 var app = express();
-require('./config/express')(app);
+require('./config/express')(app, passport, db);
 
 // Bootstrap routes
-lHelper.walk(__dirname + '/app/routes', [app]);
+lHelper.walk(__dirname + '/app/routes', [app, passport]);
 
 // Start the app by listening on <port>
 var port = process.env.PORT || config.port;
