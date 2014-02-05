@@ -45,7 +45,8 @@ exports.handleSession = function usersSession(req, res, next) {
 exports.signOut = function usersSignOut(req, res, next) {
     
     // logout only changes session.auth flag, but doesn't remove from database.
-    // Calling destroy will remove the cookie, which means the browser will do that as well, invalidating the session.
+    // Calling destroy will remove the cookie, which means the browser will do that as well, 
+    // invalidating the session.
     req.logOut();
     req.session.destroy();
     res.json( mBuilder.buildQuickResponse() );   
