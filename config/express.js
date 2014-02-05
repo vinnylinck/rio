@@ -28,7 +28,8 @@ module.exports = function(app, passport, db) {
         app.use(express.cookieParser());
         
         // Request body parsing middleware should be above methodOverride
-        // Connect 3.0 replacement for: app.use(require('connect').bodyParser());
+        // Connect 3.0 replacement for: 
+        //app.use(express.bodyParser());
         app.use(express.json());
         app.use(express.urlencoded());
         app.use(express.methodOverride());
@@ -54,4 +55,7 @@ module.exports = function(app, passport, db) {
     
     // the last thing I need to do...
     app.use(app.router);
+    
+    // Setting the fav icon and static folder
+    app.use(express.favicon());
 };

@@ -5,7 +5,11 @@ var mongoose = require('mongoose'),
     mBuilder = require('../../utils/messageBuilder');
 
 exports.me = function usersMe(req, res) {
-    res.json(req.user || {});
+    if (!req.user) {
+        res.send(401, 'Session has been expired.');
+    } else {
+        res.json( mBuilder.buildQuickResponse(null, null, req.user.getMetadata()) );
+    }
 };
 
 exports.create = function usersCreate(req, res) {
@@ -22,10 +26,18 @@ exports.create = function usersCreate(req, res) {
 exports.handleSession = function usersSession(req, res, next) {
     var err, msg;
     
+    // validate a "possible" session establishing failure itself
     if (!req.user) {
         err = 'internal error when establishing connection with server.';
-        msg = 'An unexpected error happend when opening conenction with server using your account. Please contact support for more details.';
-    }
+        msg = 'An unexpected error happend when opening connection with server using your account. Please contact support for more details.';
+        return res.json(mBuilder.buildQuickResponse(err, msg, req.user.getMetadata()));
+    } 
     
-    res.json(mBuilder.buildQuickResponse(err, msg, req.user.getMetadata()));
+    // make passportjs setup the user object, serialize the user, ...
+    req.login(req.user, {}, function(err) {
+        if (err) { 
+            return next(err); 
+        }
+        return res.redirect("/users/me");
+    });
 };
