@@ -2,7 +2,8 @@
 'use strict';
 
 module.exports = function usersRoutes(app, passport) {
-    var users = require('../controllers/users');
+    var users = require('../controllers/users'),
+        authorization = require('./middlewares/authorization.js');
     
     app.post('/users', users.create);
     app.get('/users/me', users.me);
