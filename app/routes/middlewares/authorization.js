@@ -1,12 +1,14 @@
 /* jslint node: true */
 'use strict';
 
+var mBuilder = require('../../../utils/messageBuilder');
+
 /**
- * Generic require login routing middleware
+ * Generic authentication check routing middleware
  */
-exports.requiresLogin = function(req, res, next) {
+exports.requiresAuth = function(req, res, next) {
     if (!req.isAuthenticated()) {
-        return res.send(401, 'Not authorized');
+        return res.json (mBuilder.buildQuickResponse(401, 'Not authorized'));
     }
     next();
 };

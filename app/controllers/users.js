@@ -5,11 +5,7 @@ var mongoose = require('mongoose'),
     mBuilder = require('../../utils/messageBuilder');
 
 exports.me = function usersMe(req, res) {
-    if (!req.user) {
-        res.send(401, 'Session has been expired.');
-    } else {
-        res.json( mBuilder.buildQuickResponse(null, null, req.user.getMetadata()) );
-    }
+    res.json( mBuilder.buildQuickResponse(null, null, req.user.getMetadata()) );
 };
 
 exports.create = function usersCreate(req, res) {

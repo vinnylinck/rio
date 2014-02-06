@@ -5,8 +5,8 @@ module.exports = function usersRoutes(app, passport) {
     var users = require('../controllers/users'),
         authorization = require('./middlewares/authorization.js');
     
-    app.post('/users', users.create);
-    app.get('/users/me', users.me);
+    app.post('/users', authorization.requiresAuth, users.create);
+    app.get('/users/me', authorization.requiresAuth, users.me);
     
     // Setting the local strategy route
     app.post('/users/session', passport.authenticate('local'), users.handleSession);
