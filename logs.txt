@@ -1,0 +1,101 @@
+2014-02-06T12:47:54.991654+00:00 heroku[run.8450]: State changed from up to complete
+2014-02-06T12:46:29.029295+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/favicon.ico host=rio-tst.herokuapp.com request_id=c7c5df95-8f96-441d-8c13-5d46cf03d067 fwd="186.215.137.242" dyno= connect= service= status=503 bytes=
+2014-02-06T12:47:20.850279+00:00 heroku[run.8450]: State changed from starting to up
+2014-02-06T12:52:21.378406+00:00 heroku[api]: Add NODE_ENV config by vinnylinck@gmail.com
+2014-02-06T12:52:21.437023+00:00 heroku[api]: Release v5 created by vinnylinck@gmail.com
+2014-02-06T12:52:21.779424+00:00 heroku[web.1]: State changed from crashed to starting
+2014-02-06T12:52:23.891319+00:00 heroku[web.1]: Starting process with command `npm start`
+2014-02-06T12:52:25.490747+00:00 app[web.1]: 
+2014-02-06T12:52:25.490747+00:00 app[web.1]: > rio@0.1.0 start /app
+2014-02-06T12:52:25.490747+00:00 app[web.1]: > node server.js
+2014-02-06T12:52:25.490747+00:00 app[web.1]: 
+2014-02-06T12:52:26.042333+00:00 app[web.1]:           ^
+2014-02-06T12:52:26.044359+00:00 app[web.1]: Error: Cannot find module '/app/config/../config/env/test.js'
+2014-02-06T12:52:26.044359+00:00 app[web.1]:     at Function.Module._resolveFilename (module.js:338:15)
+2014-02-06T12:52:26.044359+00:00 app[web.1]:     at Function.Module._load (module.js:280:25)
+2014-02-06T12:52:26.044359+00:00 app[web.1]:     at Module.require (module.js:364:17)
+2014-02-06T12:52:26.044359+00:00 app[web.1]:     at require (module.js:380:17)
+2014-02-06T12:52:26.062588+00:00 app[web.1]: npm ERR! rio@0.1.0 start: `node server.js`
+2014-02-06T12:52:26.063093+00:00 app[web.1]: npm ERR! Exit status 8
+2014-02-06T12:52:26.063517+00:00 app[web.1]: npm ERR! 
+2014-02-06T12:52:26.063813+00:00 app[web.1]: npm ERR! Failed at the rio@0.1.0 start script.
+2014-02-06T12:52:26.064615+00:00 app[web.1]: npm ERR! This is most likely a problem with the rio package,
+2014-02-06T12:52:26.064903+00:00 app[web.1]: npm ERR! not with npm itself.
+2014-02-06T12:52:26.065109+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2014-02-06T12:52:26.065314+00:00 app[web.1]: npm ERR!     node server.js
+2014-02-06T12:52:26.067558+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2014-02-06T12:52:26.037183+00:00 app[web.1]: 
+2014-02-06T12:52:26.042066+00:00 app[web.1]:     throw err;
+2014-02-06T12:52:26.037475+00:00 app[web.1]: module.js:340
+2014-02-06T12:52:26.055833+00:00 app[web.1]: 
+2014-02-06T12:52:26.044359+00:00 app[web.1]:     at Object.<anonymous> (/app/config/index.js:11:5)
+2014-02-06T12:52:26.044359+00:00 app[web.1]:     at Object.Module._extensions..js (module.js:474:10)
+2014-02-06T12:52:26.044359+00:00 app[web.1]:     at Module.load (module.js:356:32)
+2014-02-06T12:52:26.044359+00:00 app[web.1]:     at Function.Module._load (module.js:312:12)
+2014-02-06T12:52:26.044854+00:00 app[web.1]:     at Module.require (module.js:364:17)
+2014-02-06T12:52:26.066898+00:00 app[web.1]: npm ERR! cwd /app
+2014-02-06T12:52:26.065972+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2014-02-06T12:52:26.065777+00:00 app[web.1]: npm ERR!     npm owner ls rio
+2014-02-06T12:52:26.066628+00:00 app[web.1]: npm ERR! command "/app/vendor/node/bin/node" "/app/vendor/node/bin/npm" "start"
+2014-02-06T12:52:26.066389+00:00 app[web.1]: npm ERR! System Linux 3.8.11-ec2
+2014-02-06T12:52:26.067369+00:00 app[web.1]: npm ERR! npm -v 1.3.24
+2014-02-06T12:52:26.067144+00:00 app[web.1]: npm ERR! node -v v0.10.25
+2014-02-06T12:52:26.073121+00:00 app[web.1]: npm ERR! 
+2014-02-06T12:52:26.074455+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2014-02-06T12:52:26.075075+00:00 app[web.1]: npm ERR! not ok code 0
+2014-02-06T12:52:26.044359+00:00 app[web.1]:     at Module._compile (module.js:456:26)
+2014-02-06T12:52:26.065509+00:00 app[web.1]: npm ERR! You can get their info via:
+2014-02-06T12:52:26.073957+00:00 app[web.1]: npm ERR! Additional logging details can be found in:
+2014-02-06T12:52:27.893653+00:00 heroku[web.1]: State changed from starting to crashed
+2014-02-06T12:52:27.893908+00:00 heroku[web.1]: State changed from crashed to starting
+2014-02-06T12:52:27.881122+00:00 heroku[web.1]: Process exited with status 1
+2014-02-06T12:52:33.084338+00:00 heroku[web.1]: State changed from starting to crashed
+2014-02-06T12:53:43+00:00 heroku[slug-compiler]: Slug compilation started
+2014-02-06T12:53:47.351819+00:00 heroku[api]: Deploy 00d0279 by vinnylinck@gmail.com
+2014-02-06T12:53:47.416309+00:00 heroku[api]: Release v6 created by vinnylinck@gmail.com
+2014-02-06T12:53:47+00:00 heroku[slug-compiler]: Slug compilation finished
+2014-02-06T12:53:47.766469+00:00 heroku[web.1]: State changed from crashed to starting
+2014-02-06T12:53:50.027542+00:00 heroku[web.1]: Starting process with command `npm start`
+2014-02-06T12:53:51.929334+00:00 app[web.1]: 
+2014-02-06T12:53:51.929334+00:00 app[web.1]: > rio@0.1.0 start /app
+2014-02-06T12:53:51.929334+00:00 app[web.1]: > node server.js
+2014-02-06T12:53:51.929334+00:00 app[web.1]: 
+2014-02-06T12:53:53.078406+00:00 app[web.1]:           ^
+2014-02-06T12:53:53.077212+00:00 app[web.1]: 
+2014-02-06T12:53:53.077772+00:00 app[web.1]: module.js:340
+2014-02-06T12:53:53.078179+00:00 app[web.1]:     throw err;
+2014-02-06T12:53:53.080619+00:00 app[web.1]: Error: Cannot find module './middlewares/authorization.js'
+2014-02-06T12:53:53.080619+00:00 app[web.1]:     at Function.Module._resolveFilename (module.js:338:15)
+2014-02-06T12:53:53.080619+00:00 app[web.1]:     at Function.Module._load (module.js:280:25)
+2014-02-06T12:53:53.080619+00:00 app[web.1]:     at /app/utils/loadHelper.js:17:26
+2014-02-06T12:53:53.080619+00:00 app[web.1]:     at Array.forEach (native)
+2014-02-06T12:53:53.080619+00:00 app[web.1]:     at require (module.js:380:17)
+2014-02-06T12:53:53.080953+00:00 app[web.1]:     at Module._compile (module.js:456:26)
+2014-02-06T12:53:53.080619+00:00 app[web.1]:     at Object.<anonymous> (/app/server.js:37:9)
+2014-02-06T12:53:53.080619+00:00 app[web.1]:     at Module.require (module.js:364:17)
+2014-02-06T12:53:53.080619+00:00 app[web.1]:     at Object.walk (/app/utils/loadHelper.js:7:26)
+2014-02-06T12:53:53.080619+00:00 app[web.1]:     at usersRoutes (/app/app/routes/users.js:6:25)
+2014-02-06T12:53:53.097703+00:00 app[web.1]: 
+2014-02-06T12:53:53.107314+00:00 app[web.1]: npm ERR! rio@0.1.0 start: `node server.js`
+2014-02-06T12:53:53.107595+00:00 app[web.1]: npm ERR! 
+2014-02-06T12:53:53.107314+00:00 app[web.1]: npm ERR! Exit status 8
+2014-02-06T12:53:53.108494+00:00 app[web.1]: npm ERR! Failed at the rio@0.1.0 start script.
+2014-02-06T12:53:53.111091+00:00 app[web.1]: npm ERR! Tell the author that this fails on your system:
+2014-02-06T12:53:53.111838+00:00 app[web.1]: npm ERR!     npm owner ls rio
+2014-02-06T12:53:53.112953+00:00 app[web.1]: npm ERR! command "/app/vendor/node/bin/node" "/app/vendor/node/bin/npm" "start"
+2014-02-06T12:53:53.113536+00:00 app[web.1]: npm ERR! node -v v0.10.25
+2014-02-06T12:53:53.116929+00:00 app[web.1]: npm ERR! Additional logging details can be found in:
+2014-02-06T12:53:53.111571+00:00 app[web.1]: npm ERR! You can get their info via:
+2014-02-06T12:53:53.110557+00:00 app[web.1]: npm ERR! This is most likely a problem with the rio package,
+2014-02-06T12:53:53.117543+00:00 app[web.1]: npm ERR! not ok code 0
+2014-02-06T12:53:53.116675+00:00 app[web.1]: npm ERR! 
+2014-02-06T12:53:53.117186+00:00 app[web.1]: npm ERR!     /app/npm-debug.log
+2014-02-06T12:53:53.113245+00:00 app[web.1]: npm ERR! cwd /app
+2014-02-06T12:53:53.114246+00:00 app[web.1]: npm ERR! code ELIFECYCLE
+2014-02-06T12:53:53.110845+00:00 app[web.1]: npm ERR! not with npm itself.
+2014-02-06T12:53:53.111332+00:00 app[web.1]: npm ERR!     node server.js
+2014-02-06T12:53:53.112078+00:00 app[web.1]: npm ERR! There is likely additional logging output above.
+2014-02-06T12:53:53.113952+00:00 app[web.1]: npm ERR! npm -v 1.3.24
+2014-02-06T12:53:53.112641+00:00 app[web.1]: npm ERR! System Linux 3.8.11-ec2
+2014-02-06T12:53:54.580096+00:00 heroku[web.1]: Process exited with status 1
+2014-02-06T12:53:54.598527+00:00 heroku[web.1]: State changed from starting to crashed
