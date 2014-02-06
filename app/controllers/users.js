@@ -26,7 +26,7 @@ exports.handleSession = function usersSession(req, res, next) {
     if (!req.user) {
         err = 'internal error when establishing connection with server.';
         msg = 'An unexpected error happend when opening connection with server using your account. Please contact support for more details.';
-        return res.json(mBuilder.buildQuickResponse(err, msg, req.user.getMetadata()));
+        return res.json(mBuilder.buildQuickResponse(err, msg));
     } 
     
     // make passportjs setup the user object, serialize the user, ...
