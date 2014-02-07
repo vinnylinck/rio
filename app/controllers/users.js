@@ -2,7 +2,32 @@
 'use strict';
 var mongoose = require('mongoose'),
     User = mongoose.model('User'),
-    mBuilder = require('../../utils/messageBuilder');
+    mBuilder = require('../../utils/messageBuilder'),
+    _ = require('lodash');
+
+
+/**
+ *
+ */
+exports.load = function (req, res, next, id) {
+    User.findOne({ _id: id }, '-salt -hashed_password')
+    .populate('profile')
+    .populate('stores')
+    .exec(function (err, user) {
+        
+        if (err) {
+            return next(err);
+            
+        } else if (!user) {
+            return next(new Error('Failure loading user: ' + id));
+            
+        } else {
+            req.loadedUser = user;
+            next();
+        }
+    });
+};
+
 
 /**
  *
@@ -66,18 +91,18 @@ exports.signOut = function (req, res, next) {
  *
  */
 exports.getUser = function (req, res, next) {
+    res.json(req.loadedUser);
+};
+
+/**
+ *
+ */
+exports.update = function (req, res, next) {
+    var user = req.loadedUser;
     
-    User.findOne({ _id: req.params.id }, '-salt -hashed_password')
-    .populate('profile')
-    .exec(function (err, user) {
-        
-        var result = (
-            err ?
-            mBuilder.buildQuickResponse(err) :
-            mBuilder.buildQuickResponse(null, null, user)
-        );
-        return res.json( result );
-        
+    user = _.extend(user, req.body);
+    
+    user.save(function(err) {
+        res.json( mBuilder.buildQuickResponse(err, 'Unexpected error updating user.', user) );
     });
-    
 };
