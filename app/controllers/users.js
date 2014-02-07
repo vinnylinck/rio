@@ -4,11 +4,18 @@ var mongoose = require('mongoose'),
     User = mongoose.model('User'),
     mBuilder = require('../../utils/messageBuilder');
 
-exports.me = function usersMe(req, res) {
-    res.json( mBuilder.buildQuickResponse(null, null, req.user.getMetadata()) );
+/**
+ *
+ */
+exports.me = function (req, res) {
+    var result = ( req.user ? req.user.getMetadata() : {} );
+    res.json( mBuilder.buildQuickResponse(null, null, result) );
 };
 
-exports.create = function usersCreate(req, res) {
+/**
+ *
+ */
+exports.create = function (req, res) {
     var user = new User(req.body),
         result;
     
@@ -19,8 +26,12 @@ exports.create = function usersCreate(req, res) {
     });
 };
 
-exports.handleSession = function usersSession(req, res, next) {
+/**
+ *
+ */
+exports.signIn = function (req, res, next) {
     var err, msg;
+    
     
     // validate a "possible" session establishing failure itself
     if (!req.user) {
@@ -38,12 +49,35 @@ exports.handleSession = function usersSession(req, res, next) {
     });
 };
 
-exports.signOut = function usersSignOut(req, res, next) {
-    
+/**
+ *
+ */
+exports.signOut = function (req, res, next) {
     // logout only changes session.auth flag, but doesn't remove from database.
     // Calling destroy will remove the cookie, which means the browser will do that as well, 
     // invalidating the session.
     req.logOut();
     req.session.destroy();
     res.json( mBuilder.buildQuickResponse() );   
+};
+
+
+/**
+ *
+ */
+exports.getUser = function (req, res, next) {
+    
+    User.findOne({ _id: req.params.id }, '-salt -hashed_password')
+    .populate('profile')
+    .exec(function (err, user) {
+        
+        var result = (
+            err ?
+            mBuilder.buildQuickResponse(err) :
+            mBuilder.buildQuickResponse(null, null, user)
+        );
+        return res.json( result );
+        
+    });
+    
 };

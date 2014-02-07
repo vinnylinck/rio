@@ -8,7 +8,28 @@ var mBuilder = require('../../../utils/messageBuilder');
  */
 exports.requiresAuth = function(req, res, next) {
     if (!req.isAuthenticated()) {
-        return res.json (mBuilder.buildQuickResponse(401, 'Not authorized'));
+        return res.json( mBuilder.buildNotAuthorized() );
+    }
+    next();
+};
+
+/**
+ * Check if user is a full system admin
+ */
+exports.isAdmin = function(req, res, next) {
+    if (!req.user.admin) {
+        return res.json( mBuilder.buildNotAuthorized() );
+    }
+    next();
+};
+
+/**
+ * Check if user is the logged one
+ */
+exports.isMe = function(req, res, next) {
+    
+    if ( !(req.user.admin || req.user._id == req.params.id) ) {
+        return res.json( mBuilder.buildNotAuthorized() );
     }
     next();
 };

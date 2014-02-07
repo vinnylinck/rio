@@ -37,6 +37,7 @@ module.exports = function(passport) {
         User.findOne({ username: username }, function(err, user) {
             
             var failed;
+        
             
             // in case of error, fail it... case else, try to authenticate.
             if (err) {

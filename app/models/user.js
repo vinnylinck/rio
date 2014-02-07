@@ -21,7 +21,11 @@ var UserSchema = new Schema({
     },
     hashed_password: String,
     provider: String,
-    salt: String
+    salt: String,
+    admin: Boolean,
+    profile: { 
+        type: Schema.Types.ObjectId, ref: 'Profile'
+    }
 });
 
 /**
@@ -118,6 +122,7 @@ UserSchema.methods = {
      */
     getMetadata: function () {
         var metaInfo = {
+            _id: this._id,
             name: this.name,
             email: this.email,
             username: this.username

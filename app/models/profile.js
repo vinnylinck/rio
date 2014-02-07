@@ -8,18 +8,17 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 /**
- *vStore Schema
+ * User Profile Schema
  */
-var StoreSchema = new Schema({
-    storeId: {
+var ProfileSchema = new Schema({
+    name: {
         type: String,
         unique: true
     },
-    name: String,
-    coords: {
-        lat: String,
-        lon: String
-    }
+    stores: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Store'
+    }]
 });
 
-mongoose.model('Store', StoreSchema);
+mongoose.model('Profile', ProfileSchema);

@@ -6,7 +6,6 @@ var fHelper = require('./formatHelper');
 exports.buildQuickResponse = function buildQResp(err, msg, data) {
     var isFine = fHelper.isNullOrUndefined(err),
         result = { ok: isFine, result: data };
-    
     if (!isFine) {
         result.error = {
             code: err.code,
@@ -21,3 +20,6 @@ exports.buildQuickResponse = function buildQResp(err, msg, data) {
     return result;
 };
 
+exports.buildNotAuthorized = function buildNotAuth() {
+    return this.buildQuickResponse(401, 'Not authorized');
+};
