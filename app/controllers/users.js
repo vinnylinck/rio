@@ -14,20 +14,15 @@ exports.load = function (req, res, next, id) {
     .populate('profile')
     .populate('stores')
     .exec(function (err, user) {
-        
-        if (err) {
-            return next(err);
-            
-        } else if (!user) {
-            return next(new Error('Failure loading user: ' + id));
-            
-        } else {
-            req.loadedUser = user;
-            next();
+
+        if (err || !user) {
+            return res.json( mBuilder.buildPreConditionFailure(id) );
         }
+
+        req.loadedUser = user;
+        next();
     });
 };
-
 
 /**
  *
@@ -43,7 +38,7 @@ exports.me = function (req, res) {
 exports.create = function (req, res) {
     var user = new User(req.body),
         result;
-    
+
     user.provider = 'local';
     user.save( function saveUser(err, inserted) {
         result = mBuilder.buildQuickResponse(err);
@@ -56,15 +51,15 @@ exports.create = function (req, res) {
  */
 exports.signIn = function (req, res, next) {
     var err, msg;
-    
-    
+
+
     // validate a "possible" session establishing failure itself
     if (!req.user) {
         err = 'internal error when establishing connection with server.';
         msg = 'An unexpected error happend when opening connection with server using your account. Please contact support for more details.';
         return res.json(mBuilder.buildQuickResponse(err, msg));
     } 
-    
+
     // make passportjs setup the user object, serialize the user, ...
     req.login(req.user, {}, function(err) {
         if (err) { 
@@ -99,10 +94,17 @@ exports.getUser = function (req, res, next) {
  */
 exports.update = function (req, res, next) {
     var user = req.loadedUser;
-    
+
     user = _.extend(user, req.body);
-    
+
     user.save(function(err) {
         res.json( mBuilder.buildQuickResponse(err, 'Unexpected error updating user.', user) );
     });
+};
+
+/**
+ *
+ */
+exports.setWorkingStore = function (req, res, next) {
+    res.json( mBuilder.buildQuickResponse('done') );
 };

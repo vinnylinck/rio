@@ -5,5 +5,10 @@ module.exports = function storesRoutes(app) {
     var stores = require('../controllers/stores'),
         authorization = require('./middlewares/authorization.js');
     
-    app.get('/stores/:id', authorization.requiresAuth, stores.getStore);
+    // store info - REQUIRES ADMIN PRIVILEGES
+    app.get('/stores/:storeId', authorization.requiresAuth, authorization.isAdmin,stores.getStore);
+    
+    // setting params
+    app.param('storeId', stores.load);
+    
 };

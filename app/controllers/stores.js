@@ -4,9 +4,26 @@ var mongoose = require('mongoose'),
     Store = mongoose.model('Store'),
     mBuilder = require('../../utils/messageBuilder');
 
-exports.getStore = function getStore(req, res) {
-    
-    Store.findOne( { _id: req.params.id }, function(err, store) {
-        return res.json( mBuilder.buildQuickResponse(err, null, store) );
-    });
+
+/**
+ *
+ */
+exports.load = function (req, res, next, id) {
+    Store.findOne({ _id: id })
+    .exec(function (err, store) {
+
+        if (err || !store) {
+            return res.json(  mBuilder.buildPreConditionFailure(id) );
+        }
+        req.loadedStore = store;
+        next();
+
+    });    
+};
+
+/**
+ *
+ */
+exports.getStore = function (req, res) {
+    return res.json(req.loadedStore);
 };

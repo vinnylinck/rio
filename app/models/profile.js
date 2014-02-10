@@ -21,4 +21,19 @@ var ProfileSchema = new Schema({
     }]
 });
 
+/**
+ * Statics
+ */
+ProfileSchema.statics.load = function(id, cb) {
+    this.findOne({ _id: id })
+    .populate('stores')
+    .exec(cb);
+};
+
+ProfileSchema.statics.lazyLoad = function(id, cb) {
+    this.findOne({
+        _id: id
+    }).exec(cb);
+};
+
 mongoose.model('Profile', ProfileSchema);

@@ -20,10 +20,22 @@ exports.buildQuickResponse = function buildQResp(err, msg, data) {
     return result;
 };
 
+
+/**
+ * PLEASE CHECK: http://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+ */
+
+// 400 - Bad Request
+exports.buildBadRequest = function buildBadRequest() {
+    return this.buildQuickResponse(400, 'Bad Request');
+};
+
+// 401 - Not Authorized
 exports.buildNotAuthorized = function buildNotAuth() {
     return this.buildQuickResponse(401, 'Not authorized');
 };
 
-exports.buildBadRequest = function buildBadRequest() {
-    return this.buildQuickResponse(400, 'Bad Request');
+// 412 - Precondition Failed
+exports.buildPreConditionFailure = function buildPCFailure(info) {
+    return this.buildQuickResponse(412, 'Precondition Failed: The server does not meet one of the preconditions that the requester put on the request', info);
 };

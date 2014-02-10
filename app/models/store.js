@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
  *vStore Schema
  */
 var StoreSchema = new Schema({
-    storeId: {
+    extId: {
         type: String,
         unique: true
     },
