@@ -15,10 +15,10 @@ module.exports = function usersRoutes(app, passport) {
     app.delete('/users/session', users.signOut);                                                        // *** sign out
     
     // user operations - REQUIRES ADMIN PROFILE or OWNERSHIP
-    app.get('/users/:id', authorization.requiresAuth, authorization.isMe, users.getUser);               // *** get user info
-    app.put('/users/:id', authorization.requiresAuth, authorization.isAdmin, users.update);             // *** set profile onto user
+    app.get('/users/:userId', authorization.requiresAuth, authorization.isMe, users.getUser);               // *** get user info
+    app.put('/users/:userId', authorization.requiresAuth, authorization.isAdmin, users.update);             // *** set profile onto user
     
     
     // Finish with setting up the articleId param
-    app.param('id', users.load);
+    app.param('userId', users.load);
 };

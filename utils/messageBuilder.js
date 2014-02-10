@@ -23,3 +23,7 @@ exports.buildQuickResponse = function buildQResp(err, msg, data) {
 exports.buildNotAuthorized = function buildNotAuth() {
     return this.buildQuickResponse(401, 'Not authorized');
 };
+
+exports.buildBadRequest = function buildBadRequest() {
+    return this.buildQuickResponse(400, 'Bad Request');
+};

@@ -27,8 +27,7 @@ exports.isAdmin = function(req, res, next) {
  * Check if user is the logged one
  */
 exports.isMe = function(req, res, next) {
-    
-    if ( !(req.user.admin || req.user._id == req.params.id) ) {
+    if ( !(req.user.admin || req.user._id == req.params.userId) ) {
         return res.json( mBuilder.buildNotAuthorized() );
     }
     next();
