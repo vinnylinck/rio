@@ -106,5 +106,16 @@ exports.update = function (req, res, next) {
  *
  */
 exports.setWorkingStore = function (req, res, next) {
-    res.json( mBuilder.buildQuickResponse('done') );
+    
+    // retrieving preferences
+    req.session.preferences = (req.session.preferences || {});
+    
+    // setting working store
+    req.session.preferences.workingStore = req.loadedStore;
+    
+    // saving it
+    req.session.save();
+    
+    
+    
 };
