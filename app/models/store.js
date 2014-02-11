@@ -27,6 +27,26 @@ var StoreSchema = new Schema({
 });
 
 /**
+ * Methods
+ */
+StoreSchema.methods = {
+     /**
+     * Returns a "friendly" metadata containing user info.
+     *
+     * @api public
+     */
+    getMetadata: function () {
+        var metaInfo = {
+            _id: this._id,
+            extId: this.extId,
+            coords: this.coords
+        };
+        
+        return metaInfo;
+    }   
+};
+
+/**
  * Statics
  */
 StoreSchema.statics.load = function(id, cb) {
@@ -40,5 +60,7 @@ StoreSchema.statics.lazyLoad = function(id, cb) {
         _id: id
     }).exec(cb);
 };
+
+
 
 mongoose.model('Store', StoreSchema);

@@ -111,7 +111,7 @@ exports.setWorkingStore = function (req, res, next) {
     req.session.preferences = (req.session.preferences || {});
     
     // setting working store
-    req.session.preferences.workingStore = req.loadedStore;
+    req.session.preferences.workingStore = req.loadedStore.getMetadata();
     
     // saving it
     req.session.save(function(err) {
