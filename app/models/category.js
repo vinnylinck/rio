@@ -15,7 +15,7 @@ var CategorySchema = new Schema({
         type: String,
         unique: true
     },
-    parentId: { type: Schema.Types.ObjectId, ref: 'Category' },
+    parent_id: { type: Schema.Types.ObjectId, ref: 'Category' },
     name: String,
     
 });

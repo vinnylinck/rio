@@ -9,8 +9,22 @@ var mongoose = require('mongoose'),
  *
  */
 exports.load = function (req, res, next, id) {
-    Store.findOne({ _id: id })
-    .exec(function (err, store) {
+    Store.load(id, function (err, store) {
+
+        if (err || !store) {
+            return res.json(  mBuilder.buildPreConditionFailure(id) );
+        }
+        req.loadedStore = store;
+        next();
+
+    });    
+};
+
+/**
+ *
+ */
+exports.lazyLoad = function (req, res, next, id) {
+    Store.lazyLoad(id, function (err, store) {
 
         if (err || !store) {
             return res.json(  mBuilder.buildPreConditionFailure(id) );

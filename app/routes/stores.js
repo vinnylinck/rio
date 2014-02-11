@@ -10,5 +10,6 @@ module.exports = function storesRoutes(app) {
     
     // setting params
     app.param('storeId', stores.load);
+    app.param('lazyStoreId', stores.lazyLoad);
     
 };

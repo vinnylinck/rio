@@ -16,7 +16,7 @@ module.exports = function usersRoutes(app, passport) {
     app.delete('/users/session', users.signOut);                                                        // *** sign out
     
     // User Session Management
-    app.put('/users/session/store/:storeId', 
+    app.put('/users/session/store/:lazyStoreId', 
             authorization.requiresAuth, 
             authorization.requiresStore, 
             users.setWorkingStore);                                                                     // *** updateWorkingStore
