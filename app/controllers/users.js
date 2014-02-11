@@ -114,8 +114,7 @@ exports.setWorkingStore = function (req, res, next) {
     req.session.preferences.workingStore = req.loadedStore;
     
     // saving it
-    req.session.save();
-    
-    
-    
+    req.session.save(function(err) {
+        return res.json( mBuilder.buildQuickResponse(err, 'Unexpected error saving Working Store on Session') );
+    });
 };
