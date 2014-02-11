@@ -5,7 +5,6 @@ var mongoose = require('mongoose'),
     mBuilder = require('../../utils/messageBuilder'),
     _ = require('lodash');
 
-
 /**
  *
  */
