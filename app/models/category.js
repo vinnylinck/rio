@@ -18,10 +18,10 @@ var CategorySchema = new Schema({
     name: String,
     status: String,
     level: String,
-    children: [{ 
+    parent_id: { 
         type: Schema.Types.ObjectId, 
         ref: 'Category' 
-    }]
+    }
 });
 
 /**

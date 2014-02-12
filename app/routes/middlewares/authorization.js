@@ -43,7 +43,10 @@ exports.requiresStore = function(req, res, next) {
     
     // are you sure you have the store loaded?
     // don't forget to include :storeId parameter into your route or populate this object yourself...
-    if (!req.loadedStore) {
+    // and sure: ADMIN is ADMIN
+    if (req.user.admin) {
+        next();
+    } else if (!req.loadedStore) {
         return res.json( mBuilder.buildPreConditionFailure() );
     } else {
         

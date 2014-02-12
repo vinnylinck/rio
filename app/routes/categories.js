@@ -9,7 +9,7 @@ module.exports = function storesRoutes(app) {
     app.get('/categories/:catId', authorization.requiresAuth, categories.getCategory);
     
     // update category info - REQUIRES ADMIN PRIVILEGES
-    app.put('/categories/:lazyCatId', authorization.requiresAuth, authorization.isAdmin, categories.update);
+    app.put('/lazy/categories/:lazyCatId', authorization.requiresAuth, authorization.isAdmin, categories.update);
     
     // setting parameters
     app.param('catId', categories.load);

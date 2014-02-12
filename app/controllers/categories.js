@@ -40,8 +40,15 @@ exports.lazyLoad = function (req, res, next, id) {
 exports.getCategory = function (req, res) {
 };
 
-/*
+/**
  *
  */
-exports.update = function (req, res) {
+exports.update = function (req, res, next) {
+    var category = req.loadedCategory;
+
+    category = _.extend(category, req.body);
+
+    category.save(function(err) {
+        res.json( mBuilder.buildQuickResponse(err, 'Unexpected error updating category.', category) );
+    });
 };
