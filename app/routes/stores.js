@@ -6,7 +6,10 @@ module.exports = function storesRoutes(app) {
         authorization = require('./middlewares/authorization.js');
     
     // store info - REQUIRES ADMIN PRIVILEGES
-    app.get('/stores/:storeId', authorization.requiresAuth, authorization.isAdmin,stores.getStore);
+    app.get('/stores/:storeId', authorization.requiresAuth, authorization.isAdmin, stores.getStore);        // retrieves store information
+    app.put('/stores/:storeId', authorization.requiresAuth, authorization.isAdmin, stores.update);          // updates store information
+    
+    
     
     // setting params
     app.param('storeId', stores.load);

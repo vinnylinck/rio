@@ -2,7 +2,8 @@
 'use strict';
 var mongoose = require('mongoose'),
     Store = mongoose.model('Store'),
-    mBuilder = require('../../utils/messageBuilder');
+    mBuilder = require('../../utils/messageBuilder'),
+    _ = require('lodash');
 
 
 /**
@@ -40,4 +41,18 @@ exports.lazyLoad = function (req, res, next, id) {
  */
 exports.getStore = function (req, res) {
     return res.json(req.loadedStore);
+};
+
+/**
+ *
+ */
+exports.update = function (req, res) {
+    var store = req.loadedStore;
+
+    store = _.extend(store, req.body);
+
+    store.save(function(err) {
+        res.json( mBuilder.buildQuickResponse(err, 'Unexpected error updating store.', store) );
+    });
+    
 };

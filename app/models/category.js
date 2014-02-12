@@ -15,9 +15,30 @@ var CategorySchema = new Schema({
         type: String,
         unique: true
     },
-    parent_id: { type: Schema.Types.ObjectId, ref: 'Category' },
     name: String,
-    
+    status: String,
+    level: String,
+    children: [{ 
+        type: Schema.Types.ObjectId, 
+        ref: 'Category' 
+    }]
 });
+
+/**
+ * Statics
+ */
+CategorySchema.statics.load = function(id, cb) {
+    this.findOne({ 
+        _id: id,
+        status: 'A'
+    }).populate('children')
+    .exec(cb);
+};
+
+CategorySchema.statics.lazyLoad = function(id, cb) {
+    this.findOne({
+        _id: id
+    }).exec(cb);
+};
 
 mongoose.model('Category', CategorySchema);
