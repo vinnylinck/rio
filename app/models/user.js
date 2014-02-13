@@ -125,11 +125,21 @@ UserSchema.methods = {
             _id: this._id,
             name: this.name,
             email: this.email,
-            username: this.username
+            username: this.username,
+            profile: this.profile
         };
         
         return metaInfo;
     }
+};
+
+/**
+ * Statics
+ */
+UserSchema.statics.load = function(id, cb) {
+    this.findOne({ _id: id }, '-salt -hashed_password')
+    .populate('profile')
+    .exec(cb);
 };
 
 mongoose.model('User', UserSchema);

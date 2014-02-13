@@ -7,16 +7,6 @@ var mBuilder = require('../../../utils/messageBuilder'),
     _ = require('lodash');
 
 /**
- * Generic authentication check routing middleware
- */
-exports.requiresAuth = function(req, res, next) {
-    if (!req.isAuthenticated()) {
-        return res.json( mBuilder.buildNotAuthorized() );
-    }
-    next();
-};
-
-/**
  * Check if user is a full system admin
  */
 exports.isAdmin = function(req, res, next) {
@@ -31,6 +21,18 @@ exports.isAdmin = function(req, res, next) {
  */
 exports.isMe = function(req, res, next) {
     if ( !(req.user.admin || req.user._id == req.params.userId) ) {
+        return res.json( mBuilder.buildNotAuthorized() );
+    }
+    next();
+};
+
+
+
+/**
+ * Generic authentication check routing middleware
+ */
+exports.requiresAuth = function(req, res, next) {
+    if (!req.isAuthenticated()) {
         return res.json( mBuilder.buildNotAuthorized() );
     }
     next();
@@ -77,5 +79,16 @@ exports.requiresStore = function(req, res, next) {
             }
         });
         
+    }
+};
+
+/**
+ *
+ */
+exports.requiresProfile = function (req, res, next) {
+    if (req.user.admin || (req.user.profile.equals(req.loadedProfile._id)) ) {
+        next();
+    } else {
+        return res.json( mBuilder.buildNotAuthorized() );
     }
 };

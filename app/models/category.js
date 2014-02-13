@@ -28,16 +28,15 @@ var CategorySchema = new Schema({
  * Statics
  */
 CategorySchema.statics.load = function(id, cb) {
-    this.findOne({ 
-        _id: id,
-        status: 'A'
-    }).populate('children')
-    .exec(cb);
-};
-
-CategorySchema.statics.lazyLoad = function(id, cb) {
     this.findOne({
         _id: id
+    }).exec(cb);
+};
+
+CategorySchema.statics.loadByStatus = function(id, st, cb) {
+    this.findOne({ 
+        _id: id,
+        status: st
     }).exec(cb);
 };
 

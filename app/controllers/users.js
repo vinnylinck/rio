@@ -10,10 +10,7 @@ var mongoose = require('mongoose'),
  *
  */
 exports.load = function (req, res, next, id) {
-    User.findOne({ _id: id }, '-salt -hashed_password')
-    .populate('profile')
-    .populate('stores')
-    .exec(function (err, user) {
+    User.load(id, function (err, user) {
 
         if (err || !user) {
             return res.json( mBuilder.buildPreConditionFailure(id) );
@@ -32,19 +29,6 @@ exports.me = function (req, res) {
     res.json( mBuilder.buildQuickResponse(null, null, result) );
 };
 
-/**
- *
- */
-exports.create = function (req, res) {
-    var user = new User(req.body),
-        result;
-
-    user.provider = 'local';
-    user.save( function saveUser(err, inserted) {
-        result = mBuilder.buildQuickResponse(err);
-        return res.json(result);
-    });
-};
 
 /**
  *
@@ -87,6 +71,20 @@ exports.signOut = function (req, res, next) {
  */
 exports.getUser = function (req, res, next) {
     res.json(req.loadedUser);
+};
+
+/**
+ *
+ */
+exports.create = function (req, res) {
+    var user = new User(req.body),
+        result;
+
+    user.provider = 'local';
+    user.save( function saveUser(err, inserted) {
+        result = mBuilder.buildQuickResponse(err);
+        return res.json(result);
+    });
 };
 
 /**
