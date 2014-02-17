@@ -126,6 +126,7 @@ UserSchema.methods = {
             name: this.name,
             email: this.email,
             username: this.username,
+            admin: this.admin,
             profile: this.profile
         };
         
