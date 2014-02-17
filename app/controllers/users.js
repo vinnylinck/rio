@@ -46,7 +46,7 @@ exports.signIn = function (req, res, next) {
 
     // make passportjs setup the user object, serialize the user, ...
     req.login(req.user, {}, function(err) {
-        return mBuilder.buildQuickResponse(err, 'Unable to login to RIO server.', req.user.getMetadata());
+        return res.json( mBuilder.buildQuickResponse(err, 'Unable to login to RIO server.', req.user.getMetadata()) );
     });
 };
 
