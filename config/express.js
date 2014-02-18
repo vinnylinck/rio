@@ -19,7 +19,7 @@ module.exports = function(app, passport, db) {
     }
     
     // Enable jsonp
-    app.enable("jsonp callback");
+    //app.enable("jsonp callback");
     
     // Configuring Express App
     app.configure(function () {
@@ -29,9 +29,9 @@ module.exports = function(app, passport, db) {
         
         // Request body parsing middleware should be above methodOverride
         // Connect 3.0 replacement for: 
-        app.use(express.bodyParser());
-        //app.use(express.urlencoded());
-        //app.use(express.json());
+        //app.use(express.bodyParser());
+        app.use(express.urlencoded());
+        app.use(express.json());
         app.use(express.methodOverride());
         
         // Express-Mongo session storage

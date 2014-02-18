@@ -50,7 +50,8 @@ exports.all = function (req, res) {
  *
  */
 exports.getProfile = function (req, res) {
-    return res.json(req.loadedProfile);
+    var err = (req.loadedProfile ? undefined : 404);
+    return res.json( mBuilder.buildQuickResponse(err, "Profile not found", req.loadedProfile));
 };
 
 /**
