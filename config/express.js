@@ -25,18 +25,23 @@ module.exports = function(app, passport, db) {
     app.configure(function () {
         
         // The cookieParser should be above session
-        app.use(express.cookieParser());
+        app.use(express.cookieParser(config.cookieSecret));
         
         // Request body parsing middleware should be above methodOverride
         // Connect 3.0 replacement for: 
-        //app.use(express.bodyParser());
-        app.use(express.json());
-        app.use(express.urlencoded());
+        app.use(express.bodyParser());
+        //app.use(express.urlencoded());
+        //app.use(express.json());
         app.use(express.methodOverride());
         
         // Express-Mongo session storage
         app.use(express.session({
             secret: config.sessionSecret,
+            key: config.cookieKey,
+            cookie: {
+                path: '/',
+                maxAge: 1000 * 60 * 60 * 24 // 1 day
+            },
             store: new mongoStore({
                 db: db.connection.db,
                 collection: config.sessionCollection
