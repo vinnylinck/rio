@@ -4,13 +4,13 @@
 var pkg = require('../../package.json');
 
 exports.hit = function indexHit(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://127.0.0.1:58239");
+    res.header("Access-Control-Allow-Origin", "app://47a36392-83be-40ac-bf9b-43d3a3292ed7, http://127.0.0.1:58239");
     res.header("Access-Control-Allow-Credentials", true);
     //res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     //res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Authorization, Accept');
     res.header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type');
     
-    console.log(req.sessionID, req.method, req.originalUrl);
+    //console.log(req.sessionID, req.method, req.originalUrl);
 
     next();
 };
